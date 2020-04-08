@@ -1,6 +1,7 @@
 from flask import Flask, render_template, url_for, redirect, request, session
 from flask_mysqldb import MySQL
 from flask_bootstrap import Bootstrap
+from werkzeug.security import generate_password_hash, check_password_hash
 import yaml
 import os
 
@@ -25,6 +26,7 @@ def index():
         name = form['name']
         age = form['age']
         cursor = mysql.connection.cursor()
+        name = generate_password_hash(name)
         cursor.execute("INSERT INTO employee(name, age) VALUES(%s, %s)", (name, age))
         mysql.connection.commit()
     return render_template('index.html')
@@ -35,8 +37,9 @@ def employees():
     result_value = cursor.execute("SELECT * FROM employee")
     if result_value > 0:
         employees = cursor.fetchall()
-        session['username'] = employees[0]['name']
-        return render_template('employees.html', employees=employees)
+        return str(check_password_hash(employees[3]['name'], 'Sunday'))
+        # session['username'] = employees[0]['name']
+        # return render_template('employees.html', employees=employees)
 
 # @app.route('/', methods=['GET', 'POST'])
 # def index():
