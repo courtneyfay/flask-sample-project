@@ -1,5 +1,5 @@
-{% extends 'common.html' %}
-{% block body %}
+{#{% extends 'common.html' %}#}
+{#{% block body %}#}
 {#        <h1>Hi hi hi</h1>#}
 {#        <img src="../static/coffee-beans.jpeg">#}
 {#<ul>#}
@@ -12,11 +12,20 @@
 {#{% else %}#}
 {#    <p>Mango does not exist in the list</p>#}
 {#{% endif %}#}
-    <div class="jumbotron">
-        <h1>Index</h1>
+{#    <div class="jumbotron">#}
+{#        <h1>Index</h1>#}
 {#        <form method="POST">#}
 {#            <input type="password" name="password">#}
 {#            <input type="submit">#}
 {#        </form>#}
-    </div>
+{#    </div>#}
+{#{% endblock %}#}
+
+{% extends 'common.html' %}
+{% block body %}
+<form method="POST">
+    Name: <input type="text" name="name" />
+    Age: <input type="text" name="age" />
+    <input type="submit">
+</form>
 {% endblock %}
